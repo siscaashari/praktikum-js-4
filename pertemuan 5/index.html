@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portofolio - Sisca Fatikha Ashari</title>
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .jumbotron-custom {
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: white;
+      padding: 80px 0;
+    }
+    .project-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    footer {
+      background-color: #2c3e50;
+      color: white;
+    }
+    .card {
+      transition: transform 0.3s;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">✨ Sisca Portofolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Proyek</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Tentang</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header/Jumbotron -->
+  <div class="jumbotron-custom text-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Halo, Saya Sisca Fatikha Ashari</h1>
+      <p class="lead">Mahasiswa | Desain Web & Pengembang Pemula | Pecinta Teknologi</p>
+      <a href="#" class="btn btn-light btn-lg">Lihat Portofolio</a>
+    </div>
+  </div>
+
+  <!-- Grid System (3 kolom dengan foto proyek asli) -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4"> Proyek Terbaru Saya</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&h=400&fit=crop" class="project-img" alt="Aplikasi Cuaca">
+          <div class="card-body">
+            <h5 class="card-title">🌤️ Aplikasi Cuaca</h5>
+            <p class="card-text">Menampilkan cuaca real-time menggunakan API OpenWeatherMap. Responsif dan dinamis.</p>
+            <a href="#" class="btn btn-primary">Detail Proyek</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" class="project-img" alt="Landing Page UMKM">
+          <div class="card-body">
+            <h5 class="card-title">🏪 Landing Page UMKM</h5>
+            <p class="card-text">Desain modern untuk bisnis kecil. Menggunakan grid Bootstrap & komponen interaktif.</p>
+            <a href="#" class="btn btn-primary">Detail Proyek</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" class="project-img" alt="Dashboard Sederhana">
+          <div class="card-body">
+            <h5 class="card-title">📊 Dashboard Analitik</h5>
+            <p class="card-text">Dashboard dengan grafik interaktif menggunakan Chart.js & Bootstrap 5.</p>
+            <a href="#" class="btn btn-primary">Detail Proyek</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Baris kedua proyek (opsional, tetap 3 kolom) -->
+    <div class="row mt-3">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop" class="project-img" alt="Web Portofolio">
+          <div class="card-body">
+            <h5 class="card-title">🎨 Web Portofolio</h5>
+            <p class="card-text">Portofolio pribadi dengan animasi sederhana dan layout responsif.</p>
+            <a href="#" class="btn btn-primary">Detail Proyek</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop" class="project-img" alt="To-Do List App">
+          <div class="card-body">
+            <h5 class="card-title">✅ To-Do List App</h5>
+            <p class="card-text">Aplikasi manajemen tugas dengan local storage. UI bersih & mudah digunakan.</p>
+            <a href="#" class="btn btn-primary">Detail Proyek</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=600&h=400&fit=crop" class="project-img" alt="Blog Sederhana">
+          <div class="card-body">
+            <h5 class="card-title">📝 Blog Sederhana</h5>
+            <p class="card-text">Platform blog dengan Bootstrap, komentar, dan tata letak modern.</p>
+            <a href="#" class="btn btn-primary">Detail Proyek</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4">
+    <p>&copy; 2026 Portofolio Sisca Fatikha Ashari - Dibangun dengan Bootstrap 5</p>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
