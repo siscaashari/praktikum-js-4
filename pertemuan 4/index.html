@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum JS-4 | 10 Animasi CSS dengan RACE Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+        }
+
+        /* Grid Card */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .card .race {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 20px;
+            padding-left: 19px;
+        }
+
+        .demo-area {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .explanation {
+            background: #e9ecef;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #495057;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        /* ========== ANIMASI 1: FADE IN ========== */
+        .fade-in-content {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== ANIMASI 2: HOVER ========== */
+        .hover-scale {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .hover-scale:hover {
+            transform: scale(1.1);
+            background: #c0392b;
+        }
+
+        /* ========== ANIMASI 3: SCROLL REVEAL ========== */
+        .scroll-reveal-card {
+    background: white;
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease-out;
+    width: 100%;
+}
+
+.scroll-reveal-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.scroll-reveal-card h3 {
+    margin: 12px 0 8px;
+    color: #333;
+}
+
+.scroll-reveal-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+.scroll-reveal-card button {
+    background: #667eea;
+    padding: 8px 20px;
+    font-size: 13px;
+}
+
+        /* ========== ANIMASI 4: LOADING SPINNER ========== */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e0e0e0;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========== ANIMASI 5: DROPDOWN ========== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #667eea;
+            color: white;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ========== ANIMASI 6: BACKGROUND BERGERAK ========== */
+        .moving-bg {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
+            background-size: 300% 100%;
+            animation: bgMove 5s linear infinite;
+            border-radius: 12px;
+        }
+        @keyframes bgMove {
+            from { background-position: 0% 0%; }
+            to { background-position: 300% 0%; }
+        }
+
+        /* ========== ANIMASI 7: SLIDER GAMBAR ========== */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        .slider-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider-img {
+            min-width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .slider-btn.prev { left: 10px; }
+        .slider-btn.next { right: 10px; }
+
+        /* ========== ANIMASI 8: BUTTON MENGEMBANG ========== */
+        .expand-btn {
+            background: #27ae60;
+            padding: 12px 24px;
+            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .expand-btn:active {
+            transform: scale(1.2);
+        }
+
+        /* ========== ANIMASI 9: FADE OUT POPUP ========== */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            animation: popupFadeIn 0.3s ease;
+        }
+        @keyframes popupFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .popup.fade-out {
+            animation: popupFadeOut 0.3s ease forwards;
+        }
+        @keyframes popupFadeOut {
+            to { opacity: 0; transform: scale(0.8); }
+        }
+
+        /* ========== ANIMASI 10: BOUNCING CTA ========== */
+        .bouncing-cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #f39c12;
+            color: white;
+            border-radius: 50px;
+            animation: bounce 1s ease infinite;
+            cursor: pointer;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Praktikum JS-4 ✨</h1>
+        <p class="subtitle">10 Animasi CSS dengan RACE Framework | JavaScript Dasar</p>
+
+        <div class="grid">
+            <!-- 1. Fade In -->
+            <div class="card">
+                <h2>1. Fade In Animation</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area fade-in-content" id="fadeInDemo">
+                    <p>✨ Konten muncul dengan efek fade in halus</p>
+                    <button onclick="refreshFadeIn()">Refresh Animasi</button>
+                </div>
+                <div class="explanation">💡 Fade in saat halaman dimuat - menarik perhatian pengguna sejak awal</div>
+            </div>
+
+            <!-- 2. Hover Scale & Color -->
+            <div class="card">
+                <h2>2. Hover Scale & Color</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <div class="hover-scale">Hover Aku! 👆</div>
+                </div>
+                <div class="explanation">💡 Hover memperbesar dan mengubah warna - feedback visual langsung</div>
+            </div>
+
+            <!-- 3. Scroll Reveal -->
+            <<div class="card">
+                <h2>3. Scroll Reveal Gallery</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area" style="flex-direction: column; gap: 20px; max-height: 400px; overflow-y: auto; background: #f0f2f5;">
+                    <div class="scroll-reveal-card">
+                        <img src="https://picsum.photos/id/20/300/150" alt="Kopi">
+                        <h3>☕ Kopi Nikmat</h3>
+                        <p>Diskon 20% untuk pembelian pertama!</p>
+                        <button onclick="alert('Kopi dipesan!')">Beli Sekarang</button>
+                    </div>
+                    <div class="scroll-reveal-card">
+                        <img src="https://picsum.photos/id/26/300/150" alt="Jalanan">
+                        <h3>🏙️ Jalan-Jalan Seru</h3>
+                        <p>Paket wisata hemat mulai Rp500k</p>
+                        <button onclick="alert('Tiket dipesan!')">Pesan Tiket</button>
+                    </div>
+                    <div class="scroll-reveal-card">
+                        <img src="https://picsum.photos/id/30/300/150" alt="Bunga">
+                        <h3>🌻 Buket Bunga Fresh</h3>
+                        <p>Gratis kartu ucapan spesial</p>
+                        <button onclick="alert('Buket dipesan!')">Pesan Sekarang</button>
+                    </div>
+                    <div class="scroll-reveal-card">
+                        <img src="https://picsum.photos/id/39/300/150" alt="Gadget">
+                        <h3>📱 Gadget Terbaru</h3>
+                        <p>Cicilan 0% 12 bulan</p>
+                        <button onclick="alert('Gadget dipesan!')">Lihat Promo</button>
+                    </div>
+                    <div class="scroll-reveal-card">
+                        <img src="https://picsum.photos/id/42/300/150" alt="Piano">
+                        <h3>🎹 Kursus Musik</h3>
+                        <p>Free trial kelas pertama</p>
+                        <button onclick="alert('Pendaftaran berhasil!')">Daftar Sekarang</button>
+                    </div>
+                </div>
+                <div class="explanation">💡 Scroll ke bawah dalam kotak ini → gambar & konten muncul perlahan! (Efek scroll reveal)</div>
+            </div>
+
+            <!-- 4. Loading Spinner -->
+            <div class="card">
+                <h2>4. Loading Spinner</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 15px;">⏳ Sedang memuat...</p>
+                </div>
+                <div class="explanation">💡 Animasi berputar - memberi sinyal proses loading</div>
+            </div>
+
+            <!-- 5. Dropdown Menu -->
+            <div class="card">
+                <h2>5. Dropdown Menu</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <div class="dropdown">
+                        <button>Menu ▼</button>
+                        <div class="dropdown-content">
+                            <a href="#">Profil</a>
+                            <a href="#">Pengaturan</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">💡 Hover menu - dropdown halus, meningkatkan navigasi</div>
+            </div>
+
+            <!-- 6. Moving Background -->
+            <div class="card">
+                <h2>6. Moving Background</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <div class="moving-bg"></div>
+                    <p style="margin-top: 15px;">🎨 Latar belakang bergerak dinamis</p>
+                </div>
+                <div class="explanation">💡 Background bergerak - kesan visual yang menarik</div>
+            </div>
+
+            <!-- 7. Slider Gambar -->
+            <div class="card">
+                <h2>7. Slider Gambar</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <div class="slider-container">
+                        <div class="slider-images" id="slider">
+                            <div class="slider-img" style="background-image: url('https://picsum.photos/id/1015/400/200'); background-size: cover;">
+                    
+                            </div>
+                            <div class="slider-img" style="background-image: url('https://picsum.photos/id/104/400/200'); background-size: cover;">
+                        
+                            </div>
+                            <div class="slider-img" style="background-image: url('https://picsum.photos/id/106/400/200'); background-size: cover;">
+                            
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" onclick="prevSlide()">❮</button>
+                        <button class="slider-btn next" onclick="nextSlide()">❯</button>
+                    </div>
+                </div>
+                <div class="explanation">💡 Slider dengan gambar real & transisi halus - menarik perhatian pengunjung</div>
+            </div>
+
+            <!-- 8. Expanding Button -->
+            <div class="card">
+                <h2>8. Expanding Button</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <button class="expand-btn" onclick="alert('Tombol diklik! 🎉')">Klik Aku!</button>
+                </div>
+                <div class="explanation">💡 Tombol mengembang saat diklik - dorongan untuk konversi</div>
+            </div>
+
+            <!-- 9. Fade Out Popup -->
+            <div class="card">
+                <h2>9. Fade Out Popup</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <button onclick="showPopup()">Tampilkan Popup</button>
+                </div>
+                <div class="explanation">💡 Popup fade out saat close - pengalaman interaktif</div>
+            </div>
+
+            <!-- 10. Bouncing CTA -->
+            <div class="card">
+                <h2>10. Bouncing CTA</h2>
+                <div class="race">🎯 RACE: Reach | Act | Convert | Engage</div>
+                <div class="demo-area">
+                    <div class="bouncing-cta" onclick="alert('CTA Diklik! 🚀')">
+                        🔥 Beli Sekarang!
+                    </div>
+                </div>
+                <div class="explanation">💡 Animasi bouncing pada CTA - menarik perhatian ke tombol penting</div>
+            </div>
+        </div>
+
+        <footer style="text-align: center; color: white; margin-top: 40px; padding: 20px;">
+            <p>📌 Tugas Mandiri Praktikum JS-4 | Edwin Hari Agus Prastyo, M.Kom. | 2026</p>
+            <p>🎯 RACE Framework: Reach → Act → Convert → Engage</p>
+        </footer>
+    </div>
+
+    <!-- Popup Element -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div id="popup" class="popup">
+            <h3>ℹ️ Informasi Penting</h3>
+            <p>Ini adalah contoh popup dengan animasi fade out.</p>
+            <button onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // === ANIMASI 1: REFRESH FADE IN ===
+        function refreshFadeIn() {
+            const el = document.getElementById('fadeInDemo');
+            el.style.animation = 'none';
+            setTimeout(() => {
+                el.style.animation = 'fadeIn 0.6s ease-in-out';
+            }, 10);
+        }
+
+        // === ANIMASI 3: SCROLL REVEAL ===
+        const revealCards = document.querySelectorAll('.scroll-reveal-card');
+
+function checkScrollReveal() {
+    revealCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (rect.top < windowHeight - 100 && rect.bottom > 0) {
+            card.classList.add('revealed');
+        }
+    });
+}
+
+// Cek scroll di window
+window.addEventListener('scroll', checkScrollReveal);
+window.addEventListener('load', checkScrollReveal);
+
+// Cek scroll di dalam demo area card scroll reveal
+const scrollDemoArea = document.querySelector('.card:nth-child(3) .demo-area');
+if (scrollDemoArea) {
+    scrollDemoArea.addEventListener('scroll', checkScrollReveal);
+}
+        // === ANIMASI 7: SLIDER ===
+        let currentIndex = 0;
+        const slider = document.getElementById('slider');
+        const totalSlides = 3;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        // Auto slide setiap 4 detik
+        setInterval(() => {
+            nextSlide();
+        }, 4000);
+
+        // === ANIMASI 9: FADE OUT POPUP ===
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popup = document.getElementById('popup');
+
+        function showPopup() {
+            popupOverlay.style.display = 'flex';
+            popup.classList.remove('fade-out');
+        }
+
+        function closePopup() {
+            popup.classList.add('fade-out');
+            setTimeout(() => {
+                popupOverlay.style.display = 'none';
+                popup.classList.remove('fade-out');
+            }, 300);
+        }
+
+        // Klik overlay juga close
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) closePopup();
+        });
+
+        // === ANIMASI 10: tambahan efek bouncing sudah di CSS ===
+        console.log('✅ Praktikum JS-4 selesai! Semua animasi berjalan.');
+    </script>
+</body>
+</html>
